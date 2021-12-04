@@ -1,5 +1,7 @@
 # Code Runner for Web
 
+[![Actions Status](https://github.com/formulahendry/vscode-code-runner-for-web/actions/workflows/main.yml/badge.svg)](https://github.com/formulahendry/vscode-code-runner-for-web/actions/workflows/main.yml)
+
 Run code in browser: Python
 
 ## Usages

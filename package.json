@@ -20,13 +20,13 @@
 		"multi-root ready"
 	],
 	"bugs": {
-		"url": "https://github.com/formulahendry/https://github.com/formulahendry/vscode-code-runner-for-web/issues",
+		"url": "https://github.com/formulahendry/vscode-code-runner-for-web/issues",
 		"email": "formulahendry@gmail.com"
 	},
-	"homepage": "https://github.com/formulahendry/https://github.com/formulahendry/vscode-code-runner-for-web/blob/master/README.md",
+	"homepage": "https://github.com/formulahendry/vscode-code-runner-for-web/blob/master/README.md",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/formulahendry/https://github.com/formulahendry/vscode-code-runner-for-web.git"
+		"url": "https://github.com/formulahendry/vscode-code-runner-for-web.git"
 	},
 	"activationEvents": [
 		"onCommand:code-runner-for-web.run"
