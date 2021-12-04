@@ -10,16 +10,33 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:code-runner-for-web.helloWorld"
+		"onCommand:code-runner-for-web.run"
 	],
 	"browser": "./dist/web/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "code-runner-for-web.helloWorld",
-				"title": "Hello World"
+				"command": "code-runner-for-web.run",
+				"title": "Run Code in Web",
+				"icon": "$(play)"
 			}
-		]
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "resourceLangId == python && !inOutput",
+					"command": "code-runner-for-web.run",
+					"group": "navigation"
+				}
+			],
+			"editor/title/run": [
+				{
+					"when": "resourceLangId == python",
+					"command": "code-runner-for-web.run",
+					"group": "navigation"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
