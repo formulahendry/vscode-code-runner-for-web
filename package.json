@@ -1,14 +1,33 @@
 {
 	"name": "code-runner-for-web",
 	"displayName": "Code Runner for Web",
-	"description": "",
-	"version": "0.0.1",
+	"description": "Run Code (Python) in browser",
+	"version": "0.1.0",
+	"publisher": "formulahendry",
+	"icon": "images/logo.png",
 	"engines": {
 		"vscode": "^1.62.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages"
 	],
+	"keywords": [
+		"javascript",
+		"php",
+		"python",
+		"perl",
+		"ruby",
+		"multi-root ready"
+	],
+	"bugs": {
+		"url": "https://github.com/formulahendry/https://github.com/formulahendry/vscode-code-runner-for-web/issues",
+		"email": "formulahendry@gmail.com"
+	},
+	"homepage": "https://github.com/formulahendry/https://github.com/formulahendry/vscode-code-runner-for-web/blob/master/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/formulahendry/https://github.com/formulahendry/vscode-code-runner-for-web.git"
+	},
 	"activationEvents": [
 		"onCommand:code-runner-for-web.run"
 	],

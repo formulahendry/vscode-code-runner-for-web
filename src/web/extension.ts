@@ -12,7 +12,6 @@ export function activate(context: vscode.ExtensionContext) {
 	const codeManager = new CodeManager(context);
 
 	context.subscriptions.push(vscode.commands.registerCommand('code-runner-for-web.run', () => {
-		vscode.window.showInformationMessage('Hello World from Code Runner for Web in a web extension host!');
 		codeManager.run();
 	}));
 }
