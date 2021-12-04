@@ -40,7 +40,7 @@ export class CodeView {
         </head>
         
         <body>
-            <h2 id="status">Initializing...</h2>
+            <input type="text" id="status" value="Initializing..." style="font-size: 25px; margin: 20px 0 5px; padding: 8px; font-weight: bold;" disabled>
             <textarea id="output" style="width: 100%; padding: 8px; font-size: 20px;" rows="30" disabled></textarea>
             <script>
                 const status = document.getElementById("status");
@@ -49,17 +49,17 @@ export class CodeView {
                 let pyodide;
 
                 function setRunStartStatus() {
-                    status.innerHTML = "Running...";
+                    status.value = "Running...";
                     output.value = "";
                 }
 
                 function setRunFailureStatus() {
-                    status.innerHTML = "Code Run has error!";
+                    status.value = "Code Run has error!";
                     output.style.color = "red";
                 }
 
                 function setRunEndStatus() {
-                    status.innerHTML = "Code Run is done.";
+                    status.value = "Code Run is done.";
                     output.style.color = "blue";
                 }
                 

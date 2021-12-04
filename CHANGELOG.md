@@ -1,3 +1,6 @@
+## 0.1.2 (2021-12-04)
+* Try to fix issue in Chrome: `Failed to set the 'innerHTML' property on 'Element': This document requires 'TrustedHTML' assignment.`
+
 ## 0.1.1 (2021-12-04)
 * Fix repository url
 * Add GitHub Actions
