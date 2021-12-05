@@ -9,9 +9,6 @@ export class TelemetryClient {
 
     public static async sendEvent(eventName: string, properties?: { [key: string]: string; }, measurements?: { [key: string]: number }) {
         this._client.sendTelemetryEvent(eventName, properties, measurements);
-        console.log({eventName});
-        console.log({properties});
-        console.log({measurements});
     }
 
     private static _client = new TelemetryReporter(packageJSON.name, packageJSON.version, Constants.aiKey);
