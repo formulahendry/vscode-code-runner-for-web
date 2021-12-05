@@ -17,7 +17,10 @@
 		"python",
 		"perl",
 		"ruby",
-		"multi-root ready"
+		"multi-root ready",
+		"code runner",
+		"code runner for web",
+		"web runner"
 	],
 	"bugs": {
 		"url": "https://github.com/formulahendry/vscode-code-runner-for-web/issues",
