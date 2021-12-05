@@ -17,3 +17,7 @@ Run code in browser: Python
 
 * Only support Python standard library
 * Only support running single Python file
+
+## Telemetry
+
+Anonymous telemetry collection is on by default. To opt out, please set the `telemetry.enableTelemetry` setting to `false`. Learn more in [FAQ](https://code.visualstudio.com/docs/supporting/faq#_how-to-disable-telemetry-reporting).

@@ -1,5 +1,7 @@
 'use strict';
 import * as vscode from 'vscode';
+import { Constants } from './constants';
+import { TelemetryClient } from './telemetryClient';
 
 export class CodeView {
     private static panel: vscode.WebviewPanel | undefined;
@@ -14,10 +16,24 @@ export class CodeView {
                 retainContextWhenHidden: true,
             });
             this.panel.webview.html = this.getWebviewContent();
+
+            this.panel.webview.onDidReceiveMessage(
+                message => {
+                    TelemetryClient.sendEvent(Constants.telemetry.event.runEnd, {
+                        [Constants.telemetry.isSuccess]: Constants.telemetry.fail,
+                        [Constants.telemetry.error]: message.error
+                    });
+                },
+                undefined,
+                context.subscriptions
+            );
+
             this.panel.onDidDispose(() => {
                 this.panel = undefined;
             });
         }
+
+
     }
 
     public static run(code: string) {
@@ -45,6 +61,7 @@ export class CodeView {
             <script>
                 const status = document.getElementById("status");
                 const output = document.getElementById("output");
+                const vscode = acquireVsCodeApi();
 
                 let pyodide;
 
@@ -81,6 +98,11 @@ export class CodeView {
                     catch (error) {
                         output.value = error;
                         setRunFailureStatus();
+                        
+                        vscode.postMessage({
+                            error: error.toString()
+                        })
+
                         return;
                     }
                     let stdout = await pyodide.runPythonAsync("sys.stdout.getvalue()")

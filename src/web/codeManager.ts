@@ -1,6 +1,8 @@
 "use strict";
 import * as vscode from "vscode";
 import { CodeView } from "./codeView";
+import { Constants } from "./constants";
+import { TelemetryClient } from "./telemetryClient";
 
 export class CodeManager {
     private context: vscode.ExtensionContext;
@@ -10,6 +12,8 @@ export class CodeManager {
     }
 
     public run() {
+        TelemetryClient.sendEvent(Constants.telemetry.event.runStart);
+
         const editor = vscode.window.activeTextEditor;
         if(!editor) {
             vscode.window.showInformationMessage("No file opened.");
@@ -26,5 +30,7 @@ export class CodeManager {
         CodeView.show(this.context);
 
         CodeView.run(document.getText());
+
+        TelemetryClient.sendEvent(Constants.telemetry.event.runEnd);
     }
 }
