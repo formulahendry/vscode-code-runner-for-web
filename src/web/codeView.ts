@@ -9,9 +9,12 @@ export class CodeView {
     public static show(context: vscode.ExtensionContext) {
         if (this.panel) {
             this.panel.webview.html = this.getWebviewContent();
-            this.panel.reveal();
+            this.panel.reveal(vscode.ViewColumn.Beside, true);
         } else {
-            this.panel = vscode.window.createWebviewPanel("code-runner-for-web", "Code Runner", vscode.ViewColumn.Two, {
+            this.panel = vscode.window.createWebviewPanel("code-runner-for-web", "Code Runner", {
+                viewColumn: vscode.ViewColumn.Beside,
+                preserveFocus: true,
+            }, {
                 enableScripts: true,
                 retainContextWhenHidden: true,
             });
