@@ -1,3 +1,6 @@
+## 0.1.4 (2021-12-11)
+* Load packages built in Pyodide
+
 ## 0.1.3 (2021-12-05)
 * Add telemetry
 

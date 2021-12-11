@@ -15,7 +15,7 @@ Run code in browser: Python
 
 ## Limitation
 
-* Only support Python standard library
+* Only support [Python standard library](https://docs.python.org/3/library/) and [prebuilt Python packages in Pyodide](https://pyodide.org/en/latest/usage/packages-in-pyodide.html)
 * Only support running single Python file
 
 ## Telemetry

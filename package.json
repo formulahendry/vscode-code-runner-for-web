@@ -2,7 +2,7 @@
 	"name": "code-runner-for-web",
 	"displayName": "Code Runner for Web",
 	"description": "Run Code (Python) in browser",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"publisher": "formulahendry",
 	"icon": "images/logo.png",
 	"engines": {
