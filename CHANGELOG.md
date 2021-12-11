@@ -1,3 +1,6 @@
+## 0.1.5 (2021-12-12)
+* Open webview to the side of the active column
+
 ## 0.1.4 (2021-12-11)
 * Load packages built in Pyodide
 
