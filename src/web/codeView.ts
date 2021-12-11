@@ -19,10 +19,16 @@ export class CodeView {
 
             this.panel.webview.onDidReceiveMessage(
                 message => {
-                    TelemetryClient.sendEvent(Constants.telemetry.event.runEnd, {
-                        [Constants.telemetry.isSuccess]: Constants.telemetry.fail,
-                        [Constants.telemetry.error]: message.error
-                    });
+                    if (message.isSuccess) {
+                        TelemetryClient.sendEvent(Constants.telemetry.event.runEnd, {
+                            [Constants.telemetry.isSuccess]: Constants.telemetry.success
+                        });
+                    } else {
+                        TelemetryClient.sendEvent(Constants.telemetry.event.runEnd, {
+                            [Constants.telemetry.isSuccess]: Constants.telemetry.fail,
+                            [Constants.telemetry.error]: message.error
+                        });
+                    }
                 },
                 undefined,
                 context.subscriptions
@@ -65,6 +71,11 @@ export class CodeView {
 
                 let pyodide;
 
+                function setloadPackagesStatus() {
+                    status.value = "Loading Packages...";
+                    output.value = "";
+                }
+
                 function setRunStartStatus() {
                     status.value = "Running...";
                     output.value = "";
@@ -81,18 +92,23 @@ export class CodeView {
                 }
                 
                 async function run(code) {
-                    if (!pyodide) {
-                        pyodide = await loadPyodide({
-                            indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
-                        });
-                    }
-                    setRunStartStatus();
-                    await pyodide.runPythonAsync(\`
+                    try {
+                        if (!pyodide) {
+                            pyodide = await loadPyodide({
+                                indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
+                            });
+                        }
+
+                        setloadPackagesStatus();
+                        await pyodide.loadPackagesFromImports(code);
+
+                        setRunStartStatus();
+                        await pyodide.runPythonAsync(\`
                                 import sys
                                 import io
                                 sys.stdout = io.StringIO()
                             \`);
-                    try {
+                    
                         await pyodide.runPythonAsync(code);
                     }
                     catch (error) {
@@ -105,9 +121,14 @@ export class CodeView {
 
                         return;
                     }
+
                     let stdout = await pyodide.runPythonAsync("sys.stdout.getvalue()")
                     output.value = stdout;
                     setRunEndStatus();
+
+                    vscode.postMessage({
+                        isSuccess: true
+                    })
                 }
         
                 // Handle the message inside the webview
